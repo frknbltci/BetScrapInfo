@@ -1,0 +1,235 @@
+﻿@{
+    ViewData["Title"] = "Anasayfa";
+}
+
+@model BetScrapInfo.WebUI.Models.UrlViewModel
+
+<style>
+    .lineUrlcs {
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: center;
+        margin-top: 2%;
+    }
+
+    .saveBtn {
+        margin-left: 20px;
+    }
+
+    .saveNewUrl {
+        margin-left: 20px;
+    }
+
+    .inptcs {
+        width: 100%;
+        border-radius: 15%;
+    }
+
+    .delLine {
+        margin-left: 20px;
+    }
+
+    .inptcs:focus {
+        outline: none;
+    }
+
+    .delBtn {
+        margin-left: 20px;
+    }
+
+    .rounded-circle {
+        margin: 10%;
+    }
+</style>
+<link href="/css/toastr.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+<div class="container-fluid">
+
+    @foreach (var item in Model.UrlList)
+    {
+        <div class="col-lg-12 lineUrlcs">
+            <input txturl="@item.Id" type="text" class="inptcs" value="@item.iUrl" />
+
+            <input saveid="@item.Id" type="button" value="Kaydet" class="btn btn-success btn-sm saveBtn" />
+
+            <input delid="@item.Id" type="button" value="Sil" class="btn btn-danger delBtn" />
+        </div>
+    }
+    <div class="col-lg-12 lineUrlcs appendLine">
+
+
+    </div>
+
+    <div class="container-fluid row">
+        <div class="col-lg-11"></div>
+        <div class="col-lg-1 "><a class="rounded-circle btn btn-info btn-xs pluscs"><i class="fas fa-plus"></i></a></div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+<script src="~/js/toastr.min.js"></script>
+<script>
+    $('.saveBtn').on('click', function saveUrl() {
+
+        var saveid = $(this).attr('saveid');
+        var url = $(`input[txturl=${saveid}]`).val();
+
+        var data = {
+            Id: saveid,
+            Url: url
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/Home/saveUrl",
+            data: data,
+            success: function (response) {
+                if (response == true) {
+                    sucMes("Başarılı", "Url Başarıyla Kaydedildi");
+                    setTimeout(function myfunction() {
+                        window.location.reload();
+                    }, 1000);
+                }
+                else {
+                    warningMes("Başarısız", "Url Kaydedilemedi");
+                }
+            },
+            dataType: "json"
+        });
+    });
+
+    $('.delBtn').on('click', function delUrl() {
+        var delid = $(this).attr('delid');
+        var data = {
+            Id: delid,
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/Home/delUrl",
+            data: data,
+            success: function (response) {
+                if (response == true) {
+
+                    sucMes("Başarılı", "Url Başarıyla Silindi");
+                    setTimeout(function myfunction() {
+                        window.location.reload();
+                    }, 1000);
+                }
+                else {
+
+                    warningMes("Başarısız", "Url Silinemedi");
+
+                }
+
+            },
+            dataType: "json"
+        });
+
+    });
+
+    $('.pluscs').on('click', function appendUrl() {
+        var html = '';
+        $('.appendLine').html(html);
+
+        html = `<input txturl="" type="text" class="inptcs inpTakeUrl" placeholder="Url Yazınız" value="" />
+
+<input  type="button" value="Kaydet" class="btn btn-warning btn-sm saveNewUrl " />
+
+<input  type="button" id="ds" value="Sil" class="btn btn-danger delLine" />`;
+
+        $('.appendLine').append(html);
+
+    });
+
+    $("body").on("click", ".delLine", function () {
+
+        var html = "";
+
+        $('.appendLine').html(html);
+
+    });
+
+    $("body").on("click", ".saveNewUrl", function () {
+
+        var data = {
+            Url: $(".inpTakeUrl").val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/Home/addUrl",
+            data: data,
+            success: function (response) {
+                if (response == true) {
+
+                    sucMes("Başarılı", "Url Başarıyla Eklendi");
+                    setTimeout(function myfunction() {
+                        window.location.reload();
+                    }, 1000);
+                }
+                else {
+
+                    warningMes("Başarısız", "Url Eklenirken Bir Hata Oluştu. Aynı Urlden içeride kayıtlı olabilir.");
+
+                }
+            },
+            dataType: "json"
+        });
+
+    });
+
+
+
+    function warningMes(title, message) {
+
+        Command: toastr["warning"](message, title)
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+    }
+
+    function sucMes(title, message) {
+
+        Command: toastr["success"](message, title)
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    }
+
+
+
+</script>
