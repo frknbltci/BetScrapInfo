@@ -35,17 +35,15 @@ namespace BetScrapInfo.WebUI.Controllers
 
             UrlViewModel model = new UrlViewModel() { UrlList = _urlService.GetList() };
 
-            //if (String.IsNullOrEmpty(HttpContext.Session.GetObject<String>("username")))
-            //{
-            //    return RedirectToAction("Index","Login");
-            //}
-            //else
-            //{
-            //    return View();
-            //}
+            if (String.IsNullOrEmpty(HttpContext.Session.GetObject<String>("username")))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                return View(model);
+            }
 
-
-            return View(model);
         }
 
         public IActionResult saveUrl(int Id, string Url)
@@ -188,6 +186,13 @@ namespace BetScrapInfo.WebUI.Controllers
         //        }
         //    }
         //}
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+
+            return RedirectToAction("Index","Login");
+        }
 
         public IActionResult Privacy()
         {

@@ -41,9 +41,80 @@
     .rounded-circle {
         margin: 10%;
     }
+
+
+
+    /* Absolute Center Spinner */
+    .loadingInHome {
+        position: fixed;
+        z-index: 99999;
+        height: 2em;
+        width: 2em;
+        overflow: visible;
+        margin: auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+        /* Transparent Overlay */
+        .loadingInHome:before {
+            content: '';
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.3);
+        }
+
+        /* :not(:required) hides these rules from IE9 and below */
+        .loadingInHome:not(:required) {
+            /* hide "loading..." text */
+            font: 0/0 a;
+            color: transparent;
+            text-shadow: none;
+            background-color: transparent;
+            border: 0;
+        }
+
+            .loadingInHome:not(:required):after {
+                content: '';
+                display: block;
+                font-size: 10px;
+                width: 1em;
+                height: 1em;
+                margin-top: -0.5em;
+                -webkit-animation: spinner 1500ms infinite linear;
+                -moz-animation: spinner 1500ms infinite linear;
+                /*   -ms-animation: spinner 1500ms infinite linear;*/
+                -o-animation: spinner 1500ms infinite linear;
+                animation: spinner 1500ms infinite linear;
+                border-radius: 0.5em;
+                -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+                box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+            }
+
+    .runBtn {
+        margin-left: 80%;
+        color: #fff;
+        font-weight: 500;
+    }
+    body {
+        background-image: url(/images/ftblbackgrnd.png);
+    }
+    .btn-info {
+        color: #fff;
+        background-color: #01dcff;
+        border-color: #00dcff;
+    }
 </style>
 <link href="/css/toastr.min.css" rel="stylesheet" type="text/css" />
+<link href="~/images/football-ball.svg" rel="icon" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+<div class="container-fluid"> <div style="font-weight:700; color:white;">Link Sayısı: @Model.UrlList.Count</div> <input type="button" value="Çalıştır" class="btn btn-success btn-lg runBtn" /> </div>
 <div class="container-fluid">
 
     @foreach (var item in Model.UrlList)
@@ -71,6 +142,8 @@
 
 <script src="~/js/toastr.min.js"></script>
 <script>
+
+
     $('.saveBtn').on('click', function saveUrl() {
 
         var saveid = $(this).attr('saveid');
@@ -181,6 +254,12 @@
 
     });
 
+
+    $(".runBtn").on('click', function showRunCss() {
+
+        sucMes("Kron başarıyla çalıştırıldı.");
+
+    });
 
 
     function warningMes(title, message) {

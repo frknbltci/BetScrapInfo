@@ -16,7 +16,7 @@ namespace BetScrapInfo.WebUI.Tasks.Jobs
 {
     public class CalculateMatchCountJob : IJob
     {
-        
+
         private IWebHostEnvironment environment;
         private IUrlService _urlService;
         private ITakeMatchCount _takeMatch;
@@ -56,6 +56,7 @@ namespace BetScrapInfo.WebUI.Tasks.Jobs
         {
             foreach (var item in _urlService.GetList())
             {
+                
                 var count = _takeMatch.GetCount(item.iUrl);
                 if (count == -1) { continue; };
 
@@ -115,7 +116,5 @@ namespace BetScrapInfo.WebUI.Tasks.Jobs
                 }
             }
         }
-
-  
     }
 }

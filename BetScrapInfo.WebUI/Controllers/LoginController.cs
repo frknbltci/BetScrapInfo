@@ -20,7 +20,6 @@ namespace BetScrapInfo.WebUI.Controllers
             _userService = userService;
         }
 
-        
         public IActionResult Index()
         {
 

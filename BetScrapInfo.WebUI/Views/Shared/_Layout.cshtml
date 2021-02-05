@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BetScrapInfo</title>
+    <title>@ViewData["Title"] - Bet Scrap</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="icon" type="image/svg" href="~/images/football-ball.svg" />
 </head>
 <body>
     <header>
@@ -26,6 +27,7 @@
                             <h5>@uname</h5>
 
                         </li>
+                        <li style="margin-left:80%;"> <a href="/Home/Logout"> <i class="fas fa-sign-out-alt"></i> </a></li>
                     </ul>
                 </div>
             </div>
@@ -38,8 +40,8 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - Yazılımer Teknoloji -
+        <div class="container" style="color:white; font-weight:600;">
+       
         </div>
     </footer>
     @using BetScrapInfo.WebUI.Extensions

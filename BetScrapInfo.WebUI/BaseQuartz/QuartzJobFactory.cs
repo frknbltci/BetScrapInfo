@@ -1,7 +1,9 @@
-﻿using Quartz;
+﻿using Microsoft.AspNetCore.Hosting;
+using Quartz;
 using Quartz.Spi;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,10 +13,11 @@ namespace BetScrapInfo.WebUI.BaseQuartz
     {
 
         private readonly IServiceProvider _serviceProvider;
-
-        public QuartzJobFactory(IServiceProvider serviceProvider)
+        private IWebHostEnvironment _environment;
+        public QuartzJobFactory(IServiceProvider serviceProvider, IWebHostEnvironment environment)
         {
             _serviceProvider = serviceProvider;
+            _environment = environment;
         }
         public IJob NewJob(TriggerFiredBundle bundle, IScheduler scheduler)
         {
@@ -27,7 +30,17 @@ namespace BetScrapInfo.WebUI.BaseQuartz
 
         public void ReturnJob(IJob job)
         {
-            throw new NotImplementedException();
+            var x= new NotImplementedException();
+
+            string wwwPathTxt = this._environment.WebRootPath + "/errText.txt";
+
+            var text = "***********" + x;
+
+            using (StreamWriter sw = File.AppendText(wwwPathTxt))
+            {
+                sw.WriteLine(text);
+            }
+
         }
     }
 }

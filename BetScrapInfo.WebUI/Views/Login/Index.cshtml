@@ -6,14 +6,18 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Bet Project</title>
+    <title>Bet Scrap</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
     <link href="/css/toastr.min.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/svg" href="~/images/football-ball.svg" />
     <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
+    body { font-family: Arial, Helvetica, sans-serif; 
+           
+           background-image: url("~/images/ftblbackgrnd.png") !important; 
+
+
+    }
 
         /* Full-width input fields */
         input[type=text], input[type=password] {
@@ -190,7 +194,7 @@
                     margin-top: -0.5em;
                     -webkit-animation: spinner 1500ms infinite linear;
                     -moz-animation: spinner 1500ms infinite linear;
-                 /*   -ms-animation: spinner 1500ms infinite linear;*/
+                    /*   -ms-animation: spinner 1500ms infinite linear;*/
                     -o-animation: spinner 1500ms infinite linear;
                     animation: spinner 1500ms infinite linear;
                     border-radius: 0.5em;
@@ -198,8 +202,9 @@
                     box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
                 }
 
-        /* Animation */
 
+
+        /* Animation */
         @@-webkit-keyframes spinner {
             0% {
                 -webkit-transform: rotate(0deg);
@@ -274,8 +279,9 @@
     </style>
 </head>
 
-<body>
+<body class="bgr">
     <div class="loading hidden">Loading&#8230;</div>
+    
     <div class="modal">
         <form class="modal-content animate" enctype="multipart/form-data" method="post" onsubmit="return sendToSignIn(this)">
             <div class="imgcontainer">

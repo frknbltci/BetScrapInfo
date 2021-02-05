@@ -32,10 +32,8 @@ namespace BetScrapInfo.WebUI.Extensions
         
         public int GetCount(string Url)
         {
-           
             var chromeOptions = new ChromeOptions();
             chromeOptions.AddArguments("headless");
-        
             try
             {
                 var cdRunpath = _environment.ContentRootPath;
@@ -46,14 +44,23 @@ namespace BetScrapInfo.WebUI.Extensions
                     Thread.Sleep(2000);
                     dokuman.LoadHtml(driver.PageSource);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    string wwwPathTxt = this._environment.WebRootPath + "/errText.txt";
+                    string contentPath = this._environment.ContentRootPath;
+                    var text = ex + DateTime.Now.ToString();
+
+                    using (StreamWriter sw = File.AppendText(wwwPathTxt))
+                    {
+                        sw.WriteLine(text);
+                    }
+
+
                     driver.Navigate().GoToUrl(Url);
                     Thread.Sleep(4000);
                     dokuman.LoadHtml(driver.PageSource);
                 }
                 
-            
                 match = dokuman.DocumentNode.SelectNodes("//div[@class='modul-content']//div[contains(@class,'fixture-body flex-container')]");
 
                 driver.Close();
@@ -66,7 +73,6 @@ namespace BetScrapInfo.WebUI.Extensions
                 else
                 {
                     return -1;
-
                 }
             }
             catch (Exception ex)
