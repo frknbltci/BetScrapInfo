@@ -19,13 +19,15 @@ namespace BetScrapInfo.WebUI.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private IUrlService _urlService;
-        private Extensions.TakeMatchCount _takeMatch;
+        //private Extensions.TakeMatchCount _takeMatch;
+        //private static readonly string Mail ="fbaltaci.34@gmail.com";
+        //private static readonly string Pass = "furkan_B";
 
         public HomeController(ILogger<HomeController> logger, IUrlService urlService)
         {
             _logger = logger;
             _urlService = urlService;
-            _takeMatch = new TakeMatchCount();
+            //_takeMatch = new TakeMatchCount();
         }
 
         public IActionResult Index()
@@ -123,69 +125,69 @@ namespace BetScrapInfo.WebUI.Controllers
    
         }
 
-        public void CountOperations()
-        {
-            foreach (var item in _urlService.GetList())
-            {
-                var count =_takeMatch.GetCount(item.iUrl);
-                if (count==-1){  continue; };
+        //public void CountOperations()
+        //{
+        //    foreach (var item in _urlService.GetList())
+        //    {
+        //        var count =_takeMatch.GetCount(item.iUrl);
+        //        if (count==-1){  continue; };
 
-                if (count==item.Count)
-                {
-                    Thread.Sleep(1000);
-                    continue;
-                }
-                else if(count>item.Count)
-                {
-                    try
-                    {
-                        var smtpClient = new SmtpClient("smtp.gmail.com")
-                        {
-                            Port = 587,
-                            Credentials = new NetworkCredential("fbaltaci.34@gmail.com", "password"),
-                            EnableSsl = true,
-                        };
-                        int diffrence = count - item.Count;
-                        string subj = "Son Bildiriden sonra ->" + diffrence + " Eklendi";
-                        string body = item.iUrl;
-                        smtpClient.Send("fbaltaci.34@gmail.com", "fbaltaci.34@gmail.com", subj, body);
+        //        if (count==item.Count)
+        //        {
+        //            Thread.Sleep(1000);
+        //            continue;
+        //        }
+        //        else if(count>item.Count)
+        //        {
+        //            try
+        //            {
+        //                var smtpClient = new SmtpClient("smtp.gmail.com")
+        //                {
+        //                    Port = 587,
+        //                    Credentials = new NetworkCredential(Mail,Pass),
+        //                    EnableSsl = true,
+        //                };
+        //                int diffrence = count - item.Count;
+        //                string subj = "Son Bildiriden sonra ->" + diffrence + " Eklendi";
+        //                string body = item.iUrl;
+        //                smtpClient.Send(Mail, Mail, subj, body);
 
-                        _urlService.UpdateCount(item.Id, count);
-                    }
-                    catch (Exception)
-                    {
-                        continue;
-                    }
+        //                _urlService.UpdateCount(item.Id, count);
+        //            }
+        //            catch (Exception)
+        //            {
+        //                continue;
+        //            }
    
-                }
-                else if(item.Count>count)
-                {
-                    try
-                    {
-                        var smtpClient = new SmtpClient("smtp.gmail.com")
-                        {
-                            Port = 587,
-                            Credentials = new NetworkCredential("fbaltaci.34@gmail.com", "password"),
-                            EnableSsl = true,
-                        };
-                        string subj = "Son Bildiriden sonra"+item.Count+"->"+count+" düştü.";
-                        string body = item.iUrl;
+        //        }
+        //        else if(item.Count>count)
+        //        {
+        //            try
+        //            {
+        //                var smtpClient = new SmtpClient("smtp.gmail.com")
+        //                {
+        //                    Port = 587,
+        //                    Credentials = new NetworkCredential(Mail, Pass),
+        //                    EnableSsl = true,
+        //                };
+        //                string subj = "Son Bildiriden sonra"+item.Count+"->"+count+" düştü.";
+        //                string body = item.iUrl;
 
-                        smtpClient.Send("fbaltaci.34@gmail.com", "fbaltaci.34@gmail.com", subj, body);
+        //                smtpClient.Send(Mail, Mail, subj, body);
 
-                        _urlService.UpdateCount(item.Id, count);
-                    }
-                    catch (Exception)
-                    {
-                        continue;
-                    }
-                }
-                else
-                {
-                    continue;
-                }
-            }
-        }
+        //                _urlService.UpdateCount(item.Id, count);
+        //            }
+        //            catch (Exception)
+        //            {
+        //                continue;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            continue;
+        //        }
+        //    }
+        //}
 
         public IActionResult Privacy()
         {

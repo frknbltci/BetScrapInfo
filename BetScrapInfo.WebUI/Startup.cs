@@ -1,3 +1,6 @@
+using BetScrapInfo.WebUI.BaseQuartz;
+using BetScrapInfo.WebUI.Extensions;
+using BetScrapInfo.WebUI.Tasks.Jobs;
 using Business.Abstract;
 using Business.Concrete;
 using DataAccess.Abstract;
@@ -12,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,9 +42,11 @@ namespace BetScrapInfo.WebUI
             services.AddSingleton<IUrlService, UrlManager>();
             services.AddSingleton<IUrlDal, EfUrlDal>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
+            services.AddSingleton<ITakeMatchCount,TakeMatchCount>();
+            
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
+            CallQuartz.UseQuartz(services, typeof(CalculateMatchCountJob));
 
         }
 
@@ -71,6 +77,11 @@ namespace BetScrapInfo.WebUI
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+            var scheduler = app.ApplicationServices.GetService<IScheduler>();
+            QuartzServiceUtility.StartJob<CalculateMatchCountJob>(scheduler,TimeSpan.FromMinutes(11));
+
         }
     }
 }
