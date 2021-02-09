@@ -46,7 +46,7 @@ namespace BetScrapInfo.WebUI
             
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
-            CallQuartz.UseQuartz(services, typeof(CalculateMatchCountJob));
+            //CallQuartz.UseQuartz(services, typeof(CalculateMatchCountJob));
 
         }
 
@@ -79,8 +79,8 @@ namespace BetScrapInfo.WebUI
             });
 
 
-            var scheduler = app.ApplicationServices.GetService<IScheduler>();
-            QuartzServiceUtility.StartJob<CalculateMatchCountJob>(scheduler,TimeSpan.FromMinutes(11));
+            //var scheduler = app.ApplicationServices.GetService<IScheduler>();
+            //QuartzServiceUtility.StartJob<CalculateMatchCountJob>(scheduler,TimeSpan.FromMinutes(11));
 
         }
     }

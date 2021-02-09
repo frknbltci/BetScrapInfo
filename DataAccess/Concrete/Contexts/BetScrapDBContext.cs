@@ -11,8 +11,8 @@ namespace DataAccess.Concrete.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=.;initial catalog=BetScrapDB;integrated security=true", options => options.EnableRetryOnFailure());
-           
+            optionsBuilder.UseSqlServer(@"Server=*\MSSQLSERVER2014;Database=BetScrapDB;User Id=BetScrapDB;password=66eNuAMBw4Ep;Trusted_Connection=False;MultipleActiveResultSets=true;", options => options.EnableRetryOnFailure());
+
         }
 
         public DbSet<User> Users { get; set; }

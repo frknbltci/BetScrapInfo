@@ -20,8 +20,8 @@ namespace BetScrapInfo.WebUI.Tasks.Jobs
         private IWebHostEnvironment environment;
         private IUrlService _urlService;
         private ITakeMatchCount _takeMatch;
-        private static readonly string Mail = "mail";
-        private static readonly string Pass = "pass";
+        private static readonly string Mail = "**";
+        private static readonly string Pass = "*";
 
         public CalculateMatchCountJob(IWebHostEnvironment _environment, IUrlService urlService,ITakeMatchCount takeMatch)
         {
@@ -34,7 +34,16 @@ namespace BetScrapInfo.WebUI.Tasks.Jobs
         {
             try
             {
-                CountOperations();
+                //string wwwPathTxt = this.environment.WebRootPath + "/errText.txt";
+                //string contentPath = this.environment.ContentRootPath;
+                //var text = "Çalışıyormusun ?" + DateTime.Now.ToString();
+
+                //using (StreamWriter sw = File.AppendText(wwwPathTxt))
+                //{
+                //    sw.WriteLine(text);
+                //}
+
+                //CountOperations();
             }
             catch (Exception ex)
             {
@@ -82,8 +91,17 @@ namespace BetScrapInfo.WebUI.Tasks.Jobs
 
                         _urlService.UpdateCount(item.Id, count);
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
+                        string wwwPathTxt = this.environment.WebRootPath + "/errText.txt";
+                        string contentPath = this.environment.ContentRootPath;
+                        var text = ex +"Mail Gönderimi sıkıntısı" + DateTime.Now.ToString();
+
+                        using (StreamWriter sw = File.AppendText(wwwPathTxt))
+                        {
+                            sw.WriteLine(text);
+                        }
+
                         continue;
                     }
 
@@ -101,12 +119,23 @@ namespace BetScrapInfo.WebUI.Tasks.Jobs
                         string subj = "Son Bildiriden sonra" + item.Count + "->" + count + " düştü.";
                         string body = item.iUrl;
 
+
+
                         smtpClient.Send(Mail, Mail, subj, body);
 
                         _urlService.UpdateCount(item.Id, count);
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
+
+                        string wwwPathTxt = this.environment.WebRootPath + "/errText.txt";
+                        string contentPath = this.environment.ContentRootPath;
+                        var text = ex + "Mail Gönderimi sıkıntısı" + DateTime.Now.ToString();
+
+                        using (StreamWriter sw = File.AppendText(wwwPathTxt))
+                        {
+                            sw.WriteLine(text);
+                        }
                         continue;
                     }
                 }

@@ -2,11 +2,13 @@
 using BetScrapInfo.WebUI.Models;
 using Business.Abstract;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -17,17 +19,25 @@ namespace BetScrapInfo.WebUI.Controllers
 {
     public class HomeController : Controller
     {
+
+        IWebHostEnvironment _environment;
         private readonly ILogger<HomeController> _logger;
         private IUrlService _urlService;
-        //private Extensions.TakeMatchCount _takeMatch;
-        //private static readonly string Mail ="fbaltaci.34@gmail.com";
-        //private static readonly string Pass = "furkan_B";
+        private ITakeMatchCount _takeMatch;
+        private static readonly string Mail = "**";
+        private static readonly string Pass = "**";
 
-        public HomeController(ILogger<HomeController> logger, IUrlService urlService)
+        string wwwPathTxt;
+        string contentPath;
+        string text;
+
+
+        public HomeController(ILogger<HomeController> logger, IUrlService urlService,ITakeMatchCount takeMatch, IWebHostEnvironment environment)
         {
             _logger = logger;
             _urlService = urlService;
-            //_takeMatch = new TakeMatchCount();
+            _takeMatch = takeMatch;
+            _environment = environment;
         }
 
         public IActionResult Index()
@@ -123,69 +133,108 @@ namespace BetScrapInfo.WebUI.Controllers
    
         }
 
-        //public void CountOperations()
-        //{
-        //    foreach (var item in _urlService.GetList())
-        //    {
-        //        var count =_takeMatch.GetCount(item.iUrl);
-        //        if (count==-1){  continue; };
+        [HttpGet]
+        [Route("Home/CountOperations/{data}")]
+        public JsonResult CountOperations([FromRoute] string data)
+        {
+            if (data == "d265846-AFx89qd-Sfst20z")
+            {
+                foreach (var item in _urlService.GetList())
+                {
 
-        //        if (count==item.Count)
-        //        {
-        //            Thread.Sleep(1000);
-        //            continue;
-        //        }
-        //        else if(count>item.Count)
-        //        {
-        //            try
-        //            {
-        //                var smtpClient = new SmtpClient("smtp.gmail.com")
-        //                {
-        //                    Port = 587,
-        //                    Credentials = new NetworkCredential(Mail,Pass),
-        //                    EnableSsl = true,
-        //                };
-        //                int diffrence = count - item.Count;
-        //                string subj = "Son Bildiriden sonra ->" + diffrence + " Eklendi";
-        //                string body = item.iUrl;
-        //                smtpClient.Send(Mail, Mail, subj, body);
+                    // wwwPathTxt = this._environment.WebRootPath + "/errText.txt";
+                    // contentPath = this._environment.ContentRootPath;
+                    // text = "Durum Kontrol " + DateTime.Now.ToString();
 
-        //                _urlService.UpdateCount(item.Id, count);
-        //            }
-        //            catch (Exception)
-        //            {
-        //                continue;
-        //            }
-   
-        //        }
-        //        else if(item.Count>count)
-        //        {
-        //            try
-        //            {
-        //                var smtpClient = new SmtpClient("smtp.gmail.com")
-        //                {
-        //                    Port = 587,
-        //                    Credentials = new NetworkCredential(Mail, Pass),
-        //                    EnableSsl = true,
-        //                };
-        //                string subj = "Son Bildiriden sonra"+item.Count+"->"+count+" düştü.";
-        //                string body = item.iUrl;
+                    //using (StreamWriter sw = System.IO.File.AppendText(wwwPathTxt))
+                    //{
+                    //    sw.WriteLine(text);
+                    //}
 
-        //                smtpClient.Send(Mail, Mail, subj, body);
+                    var count = _takeMatch.GetCount(item.iUrl);
+                    if (count == -1) { continue; };
 
-        //                _urlService.UpdateCount(item.Id, count);
-        //            }
-        //            catch (Exception)
-        //            {
-        //                continue;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            continue;
-        //        }
-        //    }
-        //}
+                    if (count == item.Count)
+                    {
+                        Thread.Sleep(1000);
+                        continue;
+                    }
+                    else if (count > item.Count)
+                    {
+                        try
+                        {
+                            var smtpclient = new SmtpClient("smtp.gmail.com")
+                            {
+                                Port = 587,
+                                Credentials = new NetworkCredential(Mail, Pass),
+                                EnableSsl = true,
+                                UseDefaultCredentials=false
+                            };
+                            int diffrence = count - item.Count;
+                            string subj = "son bildiriden sonra ->" + diffrence + " eklendi";
+                            string body = item.iUrl;
+                            smtpclient.Send(Mail, Mail, subj, body);
+
+                            _urlService.UpdateCount(item.Id, count);
+                        }
+                        catch (Exception ex)
+                        {
+                             wwwPathTxt = this._environment.WebRootPath + "/errText.txt";
+                             contentPath = this._environment.ContentRootPath;
+                             text = ex + "Controller " + DateTime.Now.ToString();
+
+                            using (StreamWriter sw = System.IO.File.AppendText(wwwPathTxt))
+                            {
+                                sw.WriteLine(text);
+                            }
+                            continue;
+                        }
+
+                    }
+                    else if (item.Count > count)
+                    {
+                        try
+                        {
+                            var smtpclient = new SmtpClient("smtp.gmail.com")
+                            {
+                                Port = 587,
+                                Credentials = new NetworkCredential(Mail, Pass),
+                                EnableSsl = true,
+                                UseDefaultCredentials = false
+                            };
+                            string subj = "son bildiriden sonra" + item.Count + "->" + count + " düştü.";
+                            string body = item.iUrl;
+
+                            smtpclient.Send(Mail, Mail, subj, body);
+
+                            _urlService.UpdateCount(item.Id, count);
+                        }
+                        catch (Exception ex)
+                        {
+
+                             wwwPathTxt = this._environment.WebRootPath + "/errText.txt";
+                             contentPath = this._environment.ContentRootPath;
+                             text = ex + "Controller Alt " + DateTime.Now.ToString();
+
+                            using (StreamWriter sw = System.IO.File.AppendText(wwwPathTxt))
+                            {
+                                sw.WriteLine(text);
+                            }
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                return Json(true);
+            }
+            else
+            {
+                return Json(false);
+            }
+        }
 
         public IActionResult Logout()
         {

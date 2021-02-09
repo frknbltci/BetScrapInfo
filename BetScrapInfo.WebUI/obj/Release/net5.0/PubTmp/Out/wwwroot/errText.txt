@@ -1,1 +1,130 @@
 
+Durum Kontrol 7.02.2021 01:31:16
+Durum Kontrol 7.02.2021 01:31:31
+Durum Kontrol 7.02.2021 01:31:41
+Durum Kontrol 7.02.2021 01:31:52
+Durum Kontrol 7.02.2021 01:32:03
+Durum Kontrol 7.02.2021 01:32:12
+Durum Kontrol 7.02.2021 01:43:36
+Durum Kontrol 7.02.2021 01:43:54
+Durum Kontrol 7.02.2021 01:44:05
+Durum Kontrol 7.02.2021 01:44:20
+Durum Kontrol 7.02.2021 01:44:31
+Durum Kontrol 7.02.2021 01:44:49
+Durum Kontrol 7.02.2021 01:44:59
+Durum Kontrol 7.02.2021 01:45:10
+Durum Kontrol 7.02.2021 01:45:22
+Durum Kontrol 7.02.2021 01:45:32
+Durum Kontrol 7.02.2021 01:45:41
+Durum Kontrol 7.02.2021 01:45:50
+Durum Kontrol 7.02.2021 01:46:00
+Durum Kontrol 7.02.2021 01:46:12
+Durum Kontrol 7.02.2021 01:46:23
+Durum Kontrol 7.02.2021 01:46:31
+Durum Kontrol 7.02.2021 01:46:44
+Durum Kontrol 7.02.2021 01:46:53
+Durum Kontrol 7.02.2021 01:47:02
+Durum Kontrol 7.02.2021 01:47:13
+Durum Kontrol 7.02.2021 01:47:22
+Durum Kontrol 7.02.2021 01:47:33
+Durum Kontrol 7.02.2021 01:47:44
+Durum Kontrol 7.02.2021 01:47:58
+Durum Kontrol 7.02.2021 01:48:09
+Durum Kontrol 7.02.2021 01:50:33
+Durum Kontrol 7.02.2021 01:50:46
+Durum Kontrol 7.02.2021 01:50:57
+Durum Kontrol 7.02.2021 01:51:07
+Durum Kontrol 7.02.2021 01:51:17
+Durum Kontrol 7.02.2021 01:51:27
+Durum Kontrol 7.02.2021 01:51:37
+Durum Kontrol 7.02.2021 01:51:47
+Durum Kontrol 7.02.2021 01:51:59
+Durum Kontrol 7.02.2021 17:27:41
+Durum Kontrol 7.02.2021 17:27:53
+Durum Kontrol 7.02.2021 17:28:03
+System.Net.Mail.SmtpException: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. Learn more at
+   at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at System.Net.Mail.SmtpClient.Send(String from, String recipients, String subject, String body)
+   at BetScrapInfo.WebUI.Controllers.HomeController.CountOperations(String data) in C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\Controllers\HomeController.cs:line 208Controller Alt 7.02.2021 17:28:13
+Durum Kontrol 7.02.2021 17:28:13
+Durum Kontrol 7.02.2021 17:28:22
+Durum Kontrol 7.02.2021 17:28:31
+Durum Kontrol 7.02.2021 17:28:42
+Durum Kontrol 7.02.2021 17:28:51
+System.Net.Mail.SmtpException: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. Learn more at
+   at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at System.Net.Mail.SmtpClient.Send(String from, String recipients, String subject, String body)
+   at BetScrapInfo.WebUI.Controllers.HomeController.CountOperations(String data) in C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\Controllers\HomeController.cs:line 208Controller Alt 7.02.2021 17:29:00
+Durum Kontrol 7.02.2021 17:29:00
+Durum Kontrol 7.02.2021 17:29:10
+Durum Kontrol 7.02.2021 17:29:19
+Durum Kontrol 7.02.2021 17:29:27
+Durum Kontrol 7.02.2021 17:29:36
+System.Net.Mail.SmtpException: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. Learn more at
+   at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at System.Net.Mail.SmtpClient.Send(String from, String recipients, String subject, String body)
+   at BetScrapInfo.WebUI.Controllers.HomeController.CountOperations(String data) in C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\Controllers\HomeController.cs:line 208Controller Alt 7.02.2021 17:29:45
+Durum Kontrol 7.02.2021 17:29:45
+System.Net.Mail.SmtpException: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. Learn more at
+   at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at System.Net.Mail.SmtpClient.Send(String from, String recipients, String subject, String body)
+   at BetScrapInfo.WebUI.Controllers.HomeController.CountOperations(String data) in C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\Controllers\HomeController.cs:line 208Controller Alt 7.02.2021 17:29:54
+Durum Kontrol 7.02.2021 17:29:54
+Durum Kontrol 7.02.2021 17:30:04
+System.Net.Mail.SmtpException: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. Learn more at
+   at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at System.Net.Mail.SmtpClient.Send(String from, String recipients, String subject, String body)
+   at BetScrapInfo.WebUI.Controllers.HomeController.CountOperations(String data) in C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\Controllers\HomeController.cs:line 208Controller Alt 7.02.2021 17:30:13
+Durum Kontrol 7.02.2021 17:30:13
+Durum Kontrol 7.02.2021 17:30:22
+Durum Kontrol 7.02.2021 17:30:31
+System.Net.Mail.SmtpException: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. Learn more at
+   at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at System.Net.Mail.SmtpClient.Send(String from, String recipients, String subject, String body)
+   at BetScrapInfo.WebUI.Controllers.HomeController.CountOperations(String data) in C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\Controllers\HomeController.cs:line 208Controller Alt 7.02.2021 17:30:41
+Durum Kontrol 7.02.2021 17:30:41
+Durum Kontrol 7.02.2021 17:30:51
+System.Net.Mail.SmtpException: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. Learn more at
+   at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at System.Net.Mail.SmtpClient.Send(String from, String recipients, String subject, String body)
+   at BetScrapInfo.WebUI.Controllers.HomeController.CountOperations(String data) in C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\Controllers\HomeController.cs:line 208Controller Alt 7.02.2021 17:31:00
+Durum Kontrol 7.02.2021 17:31:00
+Durum Kontrol 7.02.2021 17:31:25
+System.Net.Mail.SmtpException: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. Learn more at
+   at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at System.Net.Mail.SmtpClient.Send(String from, String recipients, String subject, String body)
+   at BetScrapInfo.WebUI.Controllers.HomeController.CountOperations(String data) in C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\Controllers\HomeController.cs:line 208Controller Alt 7.02.2021 17:31:34
+Durum Kontrol 7.02.2021 17:31:34
+Durum Kontrol 7.02.2021 17:31:44
+Durum Kontrol 7.02.2021 17:34:09
+Durum Kontrol 7.02.2021 17:37:27
+Durum Kontrol 7.02.2021 17:41:22
+Durum Kontrol 7.02.2021 17:46:34
+Durum Kontrol 9.02.2021 10:10:03
+Durum Kontrol 9.02.2021 10:10:25
+Durum Kontrol 9.02.2021 10:10:35
+Durum Kontrol 9.02.2021 10:10:44

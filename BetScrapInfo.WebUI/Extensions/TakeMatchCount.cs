@@ -19,7 +19,6 @@ namespace BetScrapInfo.WebUI.Extensions
     {
         private IWebHostEnvironment _environment;
 
-
         public TakeMatchCount(IWebHostEnvironment environment)
         {
             _environment = environment;
@@ -77,7 +76,14 @@ namespace BetScrapInfo.WebUI.Extensions
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                string wwwPathTxt = this._environment.WebRootPath + "/errText.txt";
+                string contentPath = this._environment.ContentRootPath;
+                var text = ex + "Chrome Sıkıntısı" + DateTime.Now.ToString();
+
+                using (StreamWriter sw = File.AppendText(wwwPathTxt))
+                {
+                    sw.WriteLine(text);
+                }
                 return -1;
             }
             
