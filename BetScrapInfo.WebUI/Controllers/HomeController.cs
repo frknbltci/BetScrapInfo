@@ -1,6 +1,7 @@
 ﻿using BetScrapInfo.WebUI.Extensions;
 using BetScrapInfo.WebUI.Models;
 using Business.Abstract;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -24,8 +25,11 @@ namespace BetScrapInfo.WebUI.Controllers
         private readonly ILogger<HomeController> _logger;
         private IUrlService _urlService;
         private ITakeMatchCount _takeMatch;
-        private static readonly string Mail = "**";
-        private static readonly string Pass = "**";
+        private static readonly string Mail = "metriksaa@gmail.com";
+        private static readonly string Pass = "****";
+
+        //private static readonly string Mail = "fbaltaci.34@gmail.com";
+        //private static readonly string Pass = "****";
 
         string wwwPathTxt;
         string contentPath;
@@ -137,98 +141,156 @@ namespace BetScrapInfo.WebUI.Controllers
         [Route("Home/CountOperations/{data}")]
         public JsonResult CountOperations([FromRoute] string data)
         {
+            int count = 0;
             if (data == "d265846-AFx89qd-Sfst20z")
             {
-                foreach (var item in _urlService.GetList())
+
+                foreach (var item in _urlService.GetList().OrderBy(x=>x.Id))
                 {
-
-                    // wwwPathTxt = this._environment.WebRootPath + "/errText.txt";
-                    // contentPath = this._environment.ContentRootPath;
-                    // text = "Durum Kontrol " + DateTime.Now.ToString();
-
-                    //using (StreamWriter sw = System.IO.File.AppendText(wwwPathTxt))
-                    //{
-                    //    sw.WriteLine(text);
-                    //}
-
-                    var count = _takeMatch.GetCount(item.iUrl);
-                    if (count == -1) { continue; };
-
-                    if (count == item.Count)
+                    GC.Collect();
+                    Thread.Sleep(1500);
+                     count = 0;
+                    Url url = new Url();
+                   
+                    try
                     {
-                        Thread.Sleep(1000);
-                        continue;
-                    }
-                    else if (count > item.Count)
-                    {
-                        try
-                        {
-                            var smtpclient = new SmtpClient("smtp.gmail.com")
-                            {
-                                Port = 587,
-                                Credentials = new NetworkCredential(Mail, Pass),
-                                EnableSsl = true,
-                                UseDefaultCredentials=false
-                            };
-                            int diffrence = count - item.Count;
-                            string subj = "son bildiriden sonra ->" + diffrence + " eklendi";
-                            string body = item.iUrl;
-                            smtpclient.Send(Mail, Mail, subj, body);
 
-                            _urlService.UpdateCount(item.Id, count);
-                        }
-                        catch (Exception ex)
-                        {
-                             wwwPathTxt = this._environment.WebRootPath + "/errText.txt";
-                             contentPath = this._environment.ContentRootPath;
-                             text = ex + "Controller " + DateTime.Now.ToString();
+                        wwwPathTxt = this._environment.WebRootPath + "/errText.txt";
+                     
+                     
+
+                         url =  _urlService.GetById(item.Id);
+
+                      
+
+                        count = _takeMatch.GetCount(url.iUrl);
+                        
+                        /*_takeMatch.GetMobileCount(url.iUrl);*/
+
+
+                        if (count == -1) {
+
+                            text = " Count: -1 ";
 
                             using (StreamWriter sw = System.IO.File.AppendText(wwwPathTxt))
                             {
                                 sw.WriteLine(text);
                             }
-                            continue;
-                        }
 
-                    }
-                    else if (item.Count > count)
-                    {
-                        try
+                            continue; };
+
+                        if (count == item.Count)
                         {
-                            var smtpclient = new SmtpClient("smtp.gmail.com")
-                            {
-                                Port = 587,
-                                Credentials = new NetworkCredential(Mail, Pass),
-                                EnableSsl = true,
-                                UseDefaultCredentials = false
-                            };
-                            string subj = "son bildiriden sonra" + item.Count + "->" + count + " düştü.";
-                            string body = item.iUrl;
+                            wwwPathTxt = this._environment.WebRootPath + "/errText.txt";
 
-                            smtpclient.Send(Mail, Mail, subj, body);
-
-                            _urlService.UpdateCount(item.Id, count);
-                        }
-                        catch (Exception ex)
-                        {
-
-                             wwwPathTxt = this._environment.WebRootPath + "/errText.txt";
-                             contentPath = this._environment.ContentRootPath;
-                             text = ex + "Controller Alt " + DateTime.Now.ToString();
+                            text = "EŞİTLİK DURUMU/*************************************/";
 
                             using (StreamWriter sw = System.IO.File.AppendText(wwwPathTxt))
                             {
                                 sw.WriteLine(text);
                             }
+                            Thread.Sleep(1000);
+                            continue;
+                        }//urlcount dbden eski veri 
+                        else if (count > url.Count)
+                        {
+                            try
+                            {
+                                var smtpclient = new SmtpClient("smtp.gmail.com")
+                                {
+                                    Port = 587,
+                                    Credentials = new NetworkCredential(Mail, Pass),
+                                    EnableSsl = true,
+                                    UseDefaultCredentials = false
+                                };
+                                int diffrence = count - url.Count;
+                                string subj =  url.Count+ "---->"+count+ "son bil. sonra ->" + diffrence + " eklendi";
+                                string body = url.iUrl;
+                                smtpclient.Send(Mail, Mail, subj, body);
+
+                                text = "Eklendi Güncellenme yapılan veriler" + "Foreach Count" + item.Count + "Foreach Url:" + item.iUrl + " Count " + count + DateTime.Now.ToString();
+
+                                using (StreamWriter sw = System.IO.File.AppendText(wwwPathTxt))
+                                {
+                                    sw.WriteLine(text);
+                                }
+
+
+                                _urlService.UpdateCount(url.Id, count);
+                            }
+                            catch (Exception ex)
+                            {
+                                wwwPathTxt = this._environment.WebRootPath + "/errText.txt";
+                                
+                                text = ex + "Controller " + DateTime.Now.ToString();
+
+                                using (StreamWriter sw = System.IO.File.AppendText(wwwPathTxt))
+                                {
+                                    sw.WriteLine(text);
+                                }
+                                continue;
+                            }
+
+                        }
+                        else if (url.Count > count)
+                        {
+                            try
+                            {
+                                var smtpclient = new SmtpClient("smtp.gmail.com")
+                                {
+                                    Port = 587,
+                                    Credentials = new NetworkCredential(Mail, Pass),
+                                    EnableSsl = true,
+                                    UseDefaultCredentials = false
+                                };
+                                string subj = "son bil. sonra" + url.Count + "->" + count + " düştü.";
+                                string body = url.iUrl;
+
+                                wwwPathTxt = this._environment.WebRootPath + "/errText.txt";
+
+                                smtpclient.Send(Mail, Mail, subj, body);
+
+                                text = subj + DateTime.Now.ToString();
+
+                                using (StreamWriter sw = System.IO.File.AppendText(wwwPathTxt))
+                                {
+                                    sw.WriteLine(text);
+                                }
+
+                                text = "Düştü Güncellenme yapılan veriler"+ "Foreach Count"+item.Count +"Foreach Url:"+ item.iUrl+" Count "+count + DateTime.Now.ToString();
+
+                                using (StreamWriter sw = System.IO.File.AppendText(wwwPathTxt))
+                                {
+                                    sw.WriteLine(text);
+                                }
+
+                                _urlService.UpdateCount(url.Id, count);
+                            }
+                            catch (Exception ex)
+                            {
+                                continue;
+                            }
+                        }
+                        else
+                        {
+                        
                             continue;
                         }
                     }
-                    else
+                    catch (Exception ex)
                     {
+                        wwwPathTxt = this._environment.WebRootPath + "/errText.txt";
+                        contentPath = this._environment.ContentRootPath;
+                        text = ex + "Controller En Kapsayıcı Try --> Url Bulunamadı. " + DateTime.Now.ToString();
+
+                        using (StreamWriter sw = System.IO.File.AppendText(wwwPathTxt))
+                        {
+                            sw.WriteLine(text);
+                        }
                         continue;
                     }
                 }
-                return Json(true);
+                return  Json(true);
             }
             else
             {

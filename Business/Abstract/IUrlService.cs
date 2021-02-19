@@ -19,6 +19,8 @@ namespace Business.Abstract
 
         bool isExcept(string Url);
 
+        Url GetById(int Id);
+
         bool UpdateCount(int? Id, int Count);
 
     }

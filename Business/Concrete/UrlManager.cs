@@ -69,6 +69,11 @@ namespace Business.Concrete
             }
         }
 
+        public Url GetById(int Id)
+        {
+            return _urlDal.Get(x => x.Id==Id);
+        }
+
         public List<Url> GetList()
         {
             return _urlDal.GetList();
@@ -143,5 +148,7 @@ namespace Business.Concrete
                 return false;
             }
         }
+
+       
     }
 }

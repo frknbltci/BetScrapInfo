@@ -9,5 +9,6 @@ namespace DataAccess.Abstract
    public interface IUrlDal : IEntityRepository<Url>
     {
 
+
     }
 }

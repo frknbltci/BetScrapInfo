@@ -393,3 +393,4 @@ C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\obj\Rel
 C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\obj\Release\net5.0\ref\BetScrapInfo.WebUI.dll
 C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\obj\Release\net5.0\BetScrapInfo.WebUI.pdb
 C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\obj\Release\net5.0\BetScrapInfo.WebUI.genruntimeconfig.cache
+C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\bin\Release\net5.0\WebDriver.Support.dll

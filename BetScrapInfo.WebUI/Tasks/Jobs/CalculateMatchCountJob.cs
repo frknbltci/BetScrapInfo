@@ -63,18 +63,23 @@ namespace BetScrapInfo.WebUI.Tasks.Jobs
 
         public void CountOperations()
         {
+        
             foreach (var item in _urlService.GetList())
             {
-                
-                var count = _takeMatch.GetCount(item.iUrl);
+
+                var url = _urlService.GetById(item.Id);
+
+                var count = _takeMatch.GetCount(url.iUrl);
+
+               
                 if (count == -1) { continue; };
 
-                if (count == item.Count)
+                if (count == url.Count)
                 {
                     Thread.Sleep(1000);
                     continue;
                 }
-                else if (count > item.Count)
+                else if (count > url.Count)
                 {
                     try
                     {
@@ -84,7 +89,7 @@ namespace BetScrapInfo.WebUI.Tasks.Jobs
                             Credentials = new NetworkCredential(Mail, Pass),
                             EnableSsl = true,
                         };
-                        int diffrence = count - item.Count;
+                        int diffrence = count - url.Count;
                         string subj = "Son Bildiriden sonra ->" + diffrence + " Eklendi";
                         string body = item.iUrl;
                         smtpClient.Send(Mail, Mail, subj, body);
@@ -106,7 +111,7 @@ namespace BetScrapInfo.WebUI.Tasks.Jobs
                     }
 
                 }
-                else if (item.Count > count)
+                else if (url.Count > count)
                 {
                     try
                     {
@@ -116,8 +121,8 @@ namespace BetScrapInfo.WebUI.Tasks.Jobs
                             Credentials = new NetworkCredential(Mail, Pass),
                             EnableSsl = true,
                         };
-                        string subj = "Son Bildiriden sonra" + item.Count + "->" + count + " düştü.";
-                        string body = item.iUrl;
+                        string subj = "Son Bildiriden sonra" + url.Count + "->" + count + " düştü.";
+                        string body = url.iUrl;
 
 
 

@@ -9,6 +9,8 @@ namespace BetScrapInfo.WebUI.Extensions
     {
 
         int GetCount(string Url);
+
+        int GetMobileCount(string Url);
         
     }
 }

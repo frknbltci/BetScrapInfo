@@ -80,7 +80,7 @@ namespace BetScrapInfo.WebUI
 
 
             //var scheduler = app.ApplicationServices.GetService<IScheduler>();
-            //QuartzServiceUtility.StartJob<CalculateMatchCountJob>(scheduler,TimeSpan.FromMinutes(11));
+            //QuartzServiceUtility.StartJob<CalculateMatchCountJob>(scheduler,TimeSpan.FromMinutes(5));
 
         }
     }

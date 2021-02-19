@@ -393,3 +393,4 @@ C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\obj\Deb
 C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\bin\Debug\net5.0\HtmlAgilityPack.dll
 C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\bin\Debug\net5.0\WebDriver.dll
 C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\bin\Debug\net5.0\Quartz.dll
+C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\bin\Debug\net5.0\WebDriver.Support.dll

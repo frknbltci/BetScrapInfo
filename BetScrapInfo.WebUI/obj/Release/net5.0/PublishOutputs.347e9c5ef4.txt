@@ -358,6 +358,7 @@ C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\obj\Rel
 C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\obj\Release\net5.0\PubTmp\Out\Microsoft.IdentityModel.Tokens.dll
 C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\obj\Release\net5.0\PubTmp\Out\Newtonsoft.Json.dll
 C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\obj\Release\net5.0\PubTmp\Out\Quartz.dll
+C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\obj\Release\net5.0\PubTmp\Out\WebDriver.Support.dll
 C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\obj\Release\net5.0\PubTmp\Out\WebDriver.dll
 C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\obj\Release\net5.0\PubTmp\Out\System.Configuration.ConfigurationManager.dll
 C:\Users\fbalt\Desktop\Projects\BetScrap\BetScarpInfo\BetScrapInfo.WebUI\obj\Release\net5.0\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
