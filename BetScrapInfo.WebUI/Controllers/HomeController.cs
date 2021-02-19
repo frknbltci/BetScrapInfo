@@ -26,7 +26,7 @@ namespace BetScrapInfo.WebUI.Controllers
         private IUrlService _urlService;
         private ITakeMatchCount _takeMatch;
         private static readonly string Mail = "metriksaa@gmail.com";
-        private static readonly string Pass = "****";
+        private static readonly string Pass = "M****";
 
         //private static readonly string Mail = "fbaltaci.34@gmail.com";
         //private static readonly string Pass = "****";
